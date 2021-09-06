@@ -1,30 +1,30 @@
 <!--组件Home.vue代码-->
 <template>
   <div id="div01">
+
 <!--    设置顶部标题-->
     <div id="h3div">
       <h3>首页</h3>
     </div>
+
 <!--    创建搜索框-->
     <div class="search_box">
       <input class="search_input" type="search" v-model="searchdata" placeholder="搜索MV">
       <button class="search_button" type="submit" v-on:click="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>
+
 <!--    用循环的方式将axios请求到的数据进行循环生成mv列表-->
-    <div id="mv_all">
-      <ul>
-        <li v-for="(value1,index) in goods">
-          <div class="mv_module">
-            <div  class="mv_background">
-              <a v-on:click="lookmv(value1.id,value1.name,value1.artistName,value1.playCount)"><img class="mv_img" :src="value1.cover"></a>
-            </div>
-            <span class="mv_span1">{{value1.name}}</span><br>
-            <span class="mv_span2">{{value1.artistName}}&nbsp{{(value1.playCount/10000).toFixed(2)}}万</span>
-          </div>
-        </li>
-      </ul>
-      <div>
-      </div>
+    <div class="moduleTitle">MV列表:</div>
+    <div class="all_module">
+      <a class="mv_detail" v-for="(value1,index) in goods" :key="index" v-on:click="lookmv(value1.id,value1.name,value1.artistName,value1.playCount)">
+        <div class="mv_imgbox">
+          <img class="mv_img" :src="value1.cover">
+        </div>
+        <div class="mv_content">
+          <div class="mv_name">{{value1.name}}</div>
+          <div class="mv_author">{{value1.artistName}}</div>
+        </div>
+      </a>
     </div>
   </div>
 </template>
@@ -51,6 +51,7 @@
             }
           })
         },
+
         //设置search方法进行搜索转跳并传递参数
         search:function(){
           this.$router.push({
@@ -61,6 +62,7 @@
           })
         }
       },
+
       //组件一创建便发生axios请求并渲染组件元素
       created(){
         this.$axios({
@@ -72,89 +74,117 @@
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+// 设置样式
 <style scoped>
-/*  设置组件样式*/
+  body{
+    padding:0;
+    margin:0
+  }
+  #div01{
+    width:100%;
+    height:100%;
+  }
+
+  /* 设置首页标题样式 */
   #h3div{
     text-align:center;
-    background-color:#dddddd;
-    width:350px;
-    height:60px;
-    margin-top:0px;
-    border:solid;
-    border-color:rgba(221,221,221,1);
+    background-color:white;
+    width:100%;
+    height:8%;
+    position:fixed;
+    top:0;
+    left:0;
   }
+
+  /* 设置搜索框样式 */
   .search_box{
-    margin-top:1%;
-    width:350px;
-    height:50px;
-    background:#dddddd;
-    border-radius:50px;
+    width:100%;
+    height:5%;
+    position:fixed;
+    top:8%;
+    left:0;
+    background-color:white;
+    display:flex;
   }
+
+  /* 设置搜索输入框样式 */
   .search_input{
-    width:80%;
-    height:80%;
-    margin-top:1.5%;
-    margin-left:3%;
-    background-color:#dddddd;
+    flex:6;
+    height:100%;
+    background-color:white;
     border:none;
     outline:none;
-  }
-  .search_button{
-    width:11%;
-    height:35px;
-    border-radius:50%;
-  }
-  .mv_module{
-    margin-top:5px;
-    margin-left:6px;
-    margin-right:5px;
-    padding:0px;
-    display:inline-block;
-    vertical-align:text-top;
-    width:150px;
-    height:150px;
     border:solid;
-    background-size:100% 100px;
-    background-repeat:no-repeat;
   }
-  .mv_background{
-    margin:0px;
-    display:inline-block;
-    vertical-align:text-top;
-    width:150px;
-    height:90px;
-    background-size:100% 90px;
-    background-repeat:no-repeat;
+
+  /* 设置搜索按钮样式 */
+  .search_button{
+    flex:1;
+    height:100%;
+    border:solid;
   }
-  .mv_span1{
-    display:inline-block;
-    width:150px;
-    height:25px;
-    font-size:17px;
-    overflow:hidden;
-    text-overflow:ellipsis;
+  div,a,img{
+    padding:0;
+    margin:0;
+    border:0;
   }
-  .mv_span2{
-    display:inline-block;
-    font-size:14px;
-    width:150px;
-    height:25px;
-    color:#A9A9A9;
-    overflow:hidden;
-    text-overflow:ellipsis;
+
+  /* 设置标题样式 */
+  .moduleTitle{
+    position:fixed;
+    top:14%;
+    left:0;
+    width:100%;
+    height:5%;
+  }
+
+  /* 设置所有mv模块样式 */
+   .all_module{
+    position:fixed;
+    top:19%;
+    right:0;
+    width:100%;
+    height:75%;
+    overflow-y:auto;
+    display:flex;
+    flex-wrap:wrap;
+    background-color: white;
+    border-top:solid;
+  } 
+
+  /* 设置单个mv模块样式 */
+  .mv_detail{
+    display:block;
+    width:46%;
+    height:28%;
+    margin:2%;
+    background-color:white;
+  }
+  .mv_imgbox{
+    width:100%;
+    height:60%;
   }
   .mv_img{
-    width:150px;
-    height:90px;
+    width:100%;
+    height:100%;
   }
-  ul,li{
-    padding:0;margin:0;list-style:none;display:inline
+  .mv_content{
+    width:100%;
+    height:40%;
   }
-  #mv_all{
-    margin-left:8px;
-    overflow: auto;
-    width:350px;
-    height:440px;
+  .mv_name{
+    width:100%;
+    height:45%;
+    overflow: hidden;
+    white-space:normal;
+    text-overflow:ellipsis;
+  }
+  .mv_author{
+    width:100%;
+    height:40%;  
+    overflow: hidden;
+    white-space:normal;
+    text-overflow:ellipsis;
   }
 </style>

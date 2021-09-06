@@ -17,6 +17,8 @@
       </div>
 </template>
 
+
+// JavaScript脚本
 <script>
     export default {
       name: 'Base',
@@ -50,28 +52,27 @@
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+// CSS脚本
 <style>
   body{
     padding:0;
     margin:0;
+    background-color:#dedede;
   }
   #base-template{
-    background-color:#dddddd;
-    width:350px;
-    height:50px;
-    position:absolute;
+    background-color:white;
+    width:100%;;
+    height:8%;;
+    position:fixed;
     bottom:0px;
-    text-align:center;
-
+    left:0;
+    display:flex;
   }
   .div01{
-    display:inline-block;
-    width:10%;
-    height:40px;
-    margin-top:6px;
-    margin-left:11%;
-    margin-right:11%;
+    flex:1;
+    height:100%;
+    text-align:center;
   }
   .redcolor{
     color:red;

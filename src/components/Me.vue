@@ -10,8 +10,8 @@
       <div id="imgdiv">
         <img id="img01" src="../assets/img/小男孩头像.jpg">
         <div class="divspan1">
-          <span id="sname">{{myname}}</span><br>
-          <span id="snumber">学号:{{number}}</span>
+          <div id="sname">{{myname}}</div><br>
+          <div id="snumber">学号:{{number}}</div>
         </div>
       </div>
       <hr>
@@ -26,12 +26,17 @@
         <textarea>{{personaldata}}</textarea>
       </div>
     </div>
+    <Base/>
   </div>
 </template>
 
 <script>
+    import Base from './base-template'
     export default {
         name: 'Me',
+        components:{
+          Base
+        },
         data() {
           return {
             myname: '郭灿杰',
@@ -50,56 +55,67 @@
   #div01{
     margin:0px;
     padding:0px;
+    background-color:#dedede;
   }
+
+  /* 设置页面标题 */
   #h3div{
     text-align:center;
-    background-color:#dddddd;
-    width:350px;
-    height:60px;
-    margin-top:0px;
-    border:solid;
-    border-color:rgba(221,221,221,1);
+    background-color:white;
+    width:100%;
+    height:8%;
+    position:fixed;
+    top:0;
+    left:0;
   }
-  #imgdiv{
-    height:90px;
-    margin-top:20px;
-    margin-left:20px;
-    margin-bottom:10px;
-  }
-  #img01{
-    width:80px;
-    height:80px;
-    border-radius:80px;
-    margin:0px;
-  }
-  .divspan1{
-    display:inline-block;
-    width:200px;
-    height:90px;
-    margin-left:30px;
-  }
+
+  /* 设置页面信息大容器样式 */
   .divfirst{
-    width:350px;
+    width:100%;
+    position:fixed;
+    height:80;
+    left:0;
+    top:8%;
+  }
+
+  /* 设置头像姓名信息框样式 */
+  #imgdiv{
+    width:100%;
+    height:80%;
+    display:flex;
+  }
+
+  /* 设置头像样式 */
+  #img01{
+    width:30%;
+    height:100%;
+    border-radius:50%;;
+    margin:5%;
+  }
+
+  /* 设置姓名学号框样式 */
+  .divspan1{
+    width:60%;
+    height:80%;
+    margin:5%;
   }
   #sname{
-    display:block;
-    top:5px;
     font-size:30px;
   }
   #snumber{
-    display:block;
-    bottom:0px;
     font-size:15px;
   }
+
+  /* 设置左部信息样式 */
   .rightSpan{
     float:right;
   }
   hr{
-    color:#dddddd;
+    color:white;
   }
   textarea{
-    margin-top:5px;
-    width:350px;
+    margin-top:3%;
+    width:100%;
     height:8em;
     font-size:15px;
   }

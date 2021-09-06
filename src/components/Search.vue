@@ -11,63 +11,67 @@
       <button class="search_button" type="submit" v-on:click="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>
     <div id="mv_all">
-    <p>最新MV</p>
+    <p class="p01">最新MV:</p>
       <!--    用循环的方式将axios请求到的数据进行循环生成mv列表-->
     <div class="newmv_list">
-      <ul>
-        <li v-for="(value1,index) in newmv">
+        <a v-for="(value1,index) in newmv" :key="index" v-on:click="lookmv(value1.id,value1.name,value1.artistName,value1.playCount)">
           <div class="mv_module">
-            <div  class="mv_background">
-              <a v-on:click="lookmv(value1.id,value1.name,value1.artistName,value1.playCount)"><img class="mv_img" :src="value1.cover"></a>
-            </div><br>
-            <span class="mv_span1">{{value1.name}}</span><br>
-            <span class="mv_span2">{{value1.artistName}}</span>
+            <div  class="mv_imgbox">
+              <img class="mv_img" :src="value1.cover">
+            </div>
+            <div class="mv_content">
+              <div class="mv_name">{{value1.name}}</div>
+              <div class="mv_author">{{value1.artistName}}</div>
+            </div>
           </div>
-        </li>
-      </ul>
+        </a>
     </div>
-      <p>热门MV推荐</p>
-    <div class="newmv_list">
-      <ul>
-        <li v-for="(value1,index) in recommendmv">
+    <p class="p02">热门MV推荐:</p>
+    <div class="recommendmv_list">
+        <a v-for="(value1,index) in recommendmv" :key="index" v-on:click="lookmv(value1.id)">
           <div class="mv_module">
-            <div  class="mv_background">
-              <a v-on:click="lookmv(value1.id)"><img class="mv_img" :src="value1.picUrl"></a>
-            </div><br>
-            <span class="mv_span1">{{value1.name}}</span><br>
-            <span class="mv_span2">{{value1.artistName}}</span>
+            <div  class="mv_imgbox">
+              <img class="mv_img" :src="value1.picUrl">
+            </div>
+            <div class="mv_content">
+              <div class="mv_name">{{value1.name}}</div>
+              <div class="mv_author">{{value1.artistName}}</div>
+            </div>
           </div>
-        </li>
-      </ul>
+        </a>
     </div>
-      <p>MV排行</p>
-    <div class="newmv_list">
-      <ul>
-        <li v-for="(value1,index) in topmv">
+    <p class="p03">MV排行:</p>
+    <div class="topmv_list">
+        <a v-for="(value1,index) in topmv" :key="index" v-on:click="lookmv(value1.id)">
           <div class="mv_module">
-            <div  class="mv_background">
-              <a v-on:click="lookmv(value1.id)"><img class="mv_img" :src="value1.cover"></a>
-            </div><br>
-            <span class="mv_span1">{{value1.name}}</span><br>
-            <span class="mv_span2">{{value1.artistName}}</span>
+            <div  class="mv_imgbox">
+              <img class="mv_img" :src="value1.cover">
+            </div>
+            <div class="mv_content">
+              <div class="mv_name">{{value1.name}}</div>
+              <div class="mv_author">{{value1.artistName}}</div>
+            </div>
           </div>
-        </li>
-      </ul>
+        </a>
     </div>
     </div>
+    <Base/>
   </div>
 </template>
 
 <script>
+    import Base from './base-template'
     export default {
         name: 'Search',
+        components:{
+          Base
+        },
         data() {
             return {
               searchdata:'',
               newmv:[],
               recommendmv:[],
               topmv:[]
-
             }
         },
       methods:{
@@ -116,90 +120,165 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  body{
+    padding:0;
+    margin:0
+  }
+  #div01{
+    width:100%;
+    height:100%;
+  }
+
+  /* 设置标题样式 */
   #h3div{
     text-align:center;
-    background-color:#dddddd;
-    width:350px;
-    height:60px;
-    margin-top:0px;
-    border:solid;
-    border-color:rgba(221,221,221,1);
+    background-color:white;
+    width:100%;
+    height:8%;
+    position:fixed;
+    top:0;
+    left:0;
   }
+
+    /* 设置搜索框样式 */
   .search_box{
-    margin-top:1%;
-    width:350px;
-    height:50px;
-    background:#dddddd;
-    border-radius:50px;
+    width:100%;
+    height:5%;
+    position:fixed;
+    top:8%;
+    left:0;
+    background-color:white;
+    display:flex;
   }
+
+   /* 设置搜索输入框样式 */
   .search_input{
-    width:80%;
-    height:80%;
-    margin-top:1.5%;
-    margin-left:3%;
-    background-color:#dddddd;
+    flex:6;
+    height:100%;
+    background-color:white;
     border:none;
     outline:none;
+    border:solid;
   }
+
+  /* 设置搜索按钮样式 */
   .search_button{
-    width:11%;
-    height:35px;
-    border-radius:50%;
+    flex:1;
+    height:100%;
+    border:solid;
   }
+  div,a,img{
+    padding:0;
+    margin:0;
+    border:0;
+  }
+
+  /* 设置所有mv模块样式 */
+  #mv_all{
+    position:fixed;
+    padding:0;
+    top:14%;
+    right:0;
+    left:0;
+    width:100%;
+    height:75%;
+    overflow-y:auto;
+    display:flex;
+    flex-wrap:wrap;
+  }
+
+  /* 设置模块标题样式 */
+  .p01{
+    display:block;
+    width:100%;
+    height:6%;
+    margin:0;
+  }
+
+  /* 设置单个模块列表样式 */
   .newmv_list{
     border:solid;
-    width:350px;
-    height:155px;
+    width:100%;
+    height:30%;
     overflow: hidden;
     overflow-x:auto;
     white-space: nowrap;
+    position:absolute;
+    top:6%;
+    background-color: white;
   }
+  .p02{
+    display:block;
+    width:100%;
+    height:6%;
+    position:absolute;
+    top:35%;
+    border-top:solid;
+  }
+  .recommendmv_list{
+    border:solid;
+    width:100%;
+    height:30%;
+    overflow: hidden;
+    overflow-x:auto;
+    white-space: nowrap;
+    position:absolute;
+    top:46%;
+    background-color: white;
+  }
+  .p03{
+    display:block;
+    width:100%;
+    height:6%;
+    position:absolute;
+    top:75%;
+    border-top:solid;
+  }
+  .topmv_list{
+    border:solid;
+    width:100%;
+    height:30%;
+    overflow: hidden;
+    overflow-x:auto;
+    white-space: nowrap;
+    position:absolute;
+    top:86%;
+    background-color: white;
+  }
+
+  /* 设置单个mv模块样式 */
   .mv_module{
-    margin-top:5px;
-    margin-left:6px;
-    margin-right:5px;
+    margin:2%;
     padding:0px;
     display:inline-block;
     vertical-align:text-top;
-    width:150px;
-    height:150px;
-    background-size:100% 100px;
-    background-repeat:no-repeat;
+    width:20vh;
+    height:96%;
+    background-color: white;
   }
-  .mv_background{
-    margin:0px;
-    display:inline-block;
-    vertical-align:text-top;
-    width:150px;
-    height:90px;
-    background-size:100% 90px;
-    background-repeat:no-repeat;
-  }
-  .mv_span1{
-    display:inline-block;
-    width:150px;
-    height:25px;
-    font-size:17px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  .mv_span2{
-    display:inline-block;
-    font-size:14px;
-    color:#A9A9A9;
-    overflow:hidden;
-    text-overflow:ellipsis;
+  .mv_imgbox{
+    width:100%;
+    height:60%;
   }
   .mv_img{
-    width:150px;
-    height:90px;
+    width:100%;
+    height:100%;
   }
-  ul,li{
-    padding:0;margin:0;list-style:none;display:inline
+  .mv_content{
+    width:100%;
+    height:40%;
   }
-  #mv_all{
-    overflow: auto;
-    width:350px;
-    height:440px;
+  .mv_name{
+    width:100%;
+    height:45%;
+    overflow: hidden;
+    text-overflow:ellipsis;
   }
+  .mv_author{
+    width:100%;
+    height:40%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+  }
+
 </style>

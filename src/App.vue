@@ -22,7 +22,7 @@
 <!--  给App.vue设置样式-->
   #app{
     margin-top:0px;
-    width:350px;
-    height:607px;
+    width:100%;
+    height:100%;
   }
 </style>

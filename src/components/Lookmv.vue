@@ -10,31 +10,25 @@
     <video :src="urldata" controls></video>
     <hr>
 <!--    设置mv详细信息-->
-    <div class="divspan">
-      <div style="text-align:center">
-        <span style="font-size:25px">{{name}}</span>
+    <div class="mvdetail">
+      <div class="mv_name">
+        <span>{{name}}</span>
       </div>
-      <div>
-        <span class="leftspan">歌手:&nbsp;&nbsp{{artistname}}</span><span class="rightspan">播放:&nbsp;&nbsp{{(playcount/10000).toFixed(2)}}万</span>
+      <div class="mv_data">
+        <span class="left_author">歌手:&nbsp;&nbsp;{{artistname}}</span><span class="rightspan">播放:&nbsp;&nbsp;{{(playcount/10000).toFixed(2)}}万</span>
       </div>
     </div>
     <hr>
 <!--    用循环设置评论-->
-    <span>评论区</span>
+    <div class="comment_title">评论区:</div>
     <hr>
-    <div class="mv_all">
-      <ul>
-        <li v-for="(value1,index) in comments">
-          <div class="mv_comments">
-            <div comment_user>
-              <img :src="value1.user.avatarUrl"><span class="user_name">{{value1.user.nickname}}</span>
-            </div>
-            <br>
-            <span class="comments_content">{{value1.content}}</span>
-            <hr>
+    <div class="all_comment">
+        <div class="comment_detail" v-for="(value1,index) in comments" :key="index">
+          <div class=comment_user>
+            <img :src="value1.user.avatarUrl"><div class="user_name">{{value1.user.nickname}}</div>
           </div>
-        </li>
-      </ul>
+          <div class="comments_content">{{value1.content}}</div>
+        </div>
     </div>
   </div>
 </template>
@@ -83,65 +77,107 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /*设置样式*/
+
+/* 设置标题按钮盒子样式 */
   #h3div{
-    /*text-align:center;*/
-    background-color:#dddddd;
-    width:350px;
-    height:40px;
-    margin-top:0px;
-    border:solid;
-    border-color:rgba(221,221,221,1);
+    background-color:white;
+    width:100%;
+    height:8%;
+    position:fixed;
+    top:0;
+    left:0;
+    display:flex;
+    border-bottom:solid;
   }
+
+  /* 设置按钮样式 */
+  .div01{
+    margin-left:4px;
+    padding:0px;
+    flex:1;
+    height:100%;
+  }
+
+  /* 设置标题样式 */
+  .div02{
+    padding-left:28%;
+    background-color:white;
+    flex:8;
+    height:100%;
+  }
+
+  /* 设置视频样式 */
   video{
-    width:350px;
-    height:200px;
+    width:100%;
+    height:35%;
+    position:fixed;
+    top:7%;
+    left:0;
   }
-  img{
-    width:40px;
-    height:40px;
-    border-radius:40px;
-    margin:0px;
+
+  /* 设置mv详细信息设置 */
+  .mvdetail{
+    width:100%;
+    height:10%;
+    position:fixed;
+    top:41.5%;
+    left:0;
+    border-bottom:solid;
   }
-  .user_name{
-    font-size:13px;
+  /* 设置mv名样式 */
+  .mv_name{
+    width:100%;
+    height:55%;
+    font-size:150%;
   }
-  .comments_content{
-    font-size:17px;
+  /* 设置mv歌手和播放量盒子样式 */
+  .mv_data{
+    width:100%;
+    height:45%;
   }
-  ul,li{
-    padding:0;margin:0;list-style:none;display:inline
-  }
-  .mv_all{
-    overflow: auto;
-    width:350px;
-    height:190px;
-  }
-  .leftspan{
+  .left_author{
     color:deepskyblue;
   }
   .rightspan{
     color:rosybrown;
     float:right;
   }
-  .divspan{
-    width:350px;
+  .comment_title{
+    width:100%;
+    height:4%;
+    position:fixed;
+    left:0;
+    top:52%;
+    border-bottom:solid;
   }
-  .div01{
-    margin-left:4px;
-    padding:0px;
-    display:inline-block;
-    width:30px;
-    height:100%;
+  .all_comment{
+    width:100%;
+    height:40%;
+    position:fixed;
+    left:0;
+    top:56%;
+    overflow:scroll;
   }
-  .div02{
-    margin:0px;
-    padding:0px;
-    display:inline-block;
-    width:70%;
-    height:100%;
-    text-align:center;
+  .comment_detail{
+    width:100%;
+    height:50%;
+    border-bottom:solid;
+    border-left:solid;
   }
-  .gobutton{
-    border:none;
+  .comment_user{
+    width:100%;
+    height:50%;
+    display:flex;
+  }
+  .comment_user img{
+    width:17%;
+    height:80%;
+    margin:2%;
+    border-radius: 50%;;
+  }
+  .user_name{
+    margin-top:10%;
+    width:83%;
+    height:50%;
   }
 </style>
