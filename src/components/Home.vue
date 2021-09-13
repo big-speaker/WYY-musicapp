@@ -79,11 +79,13 @@
 <style scoped>
   body{
     padding:0;
-    margin:0
+    margin:0;
+    background-color:white;
   }
   #div01{
     width:100%;
     height:100%;
+    background-color:white;
   }
 
   /* 设置首页标题样式 */
@@ -106,6 +108,7 @@
     left:0;
     background-color:white;
     display:flex;
+    border-top:1px solid #ccc;
   }
 
   /* 设置搜索输入框样式 */
@@ -115,14 +118,16 @@
     background-color:white;
     border:none;
     outline:none;
-    border:solid;
+    border-radius: 15px;
+    border:1px solid #ccc;
   }
 
   /* 设置搜索按钮样式 */
   .search_button{
     flex:1;
     height:100%;
-    border:solid;
+    border:1px solid #ccc;
+    border-radius: 10%;
   }
   div,a,img{
     padding:0;
@@ -133,21 +138,21 @@
   /* 设置标题样式 */
   .moduleTitle{
     position:fixed;
-    top:14%;
+    top:13.5%;
     left:0;
     width:100%;
     height:5%;
+    background-color: white;
   }
 
   /* 设置所有mv模块样式 */
    .all_module{
     position:fixed;
-    top:19%;
+    top:18%;
     right:0;
     width:100%;
     height:75%;
     overflow-y:auto;
-    display:flex;
     flex-wrap:wrap;
     background-color: white;
     border-top:solid;
@@ -155,7 +160,7 @@
 
   /* 设置单个mv模块样式 */
   .mv_detail{
-    display:block;
+    display:inline-block;
     width:46%;
     height:28%;
     margin:2%;

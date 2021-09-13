@@ -76,6 +76,8 @@
     height:80;
     left:0;
     top:8%;
+    background-color:white;
+    border:1px solid #ccc;
   }
 
   /* 设置头像姓名信息框样式 */

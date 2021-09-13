@@ -158,14 +158,16 @@
     background-color:white;
     border:none;
     outline:none;
-    border:solid;
+    border:1px solid #ccc;
+    border-radius: 15px;
   }
 
   /* 设置搜索按钮样式 */
   .search_button{
     flex:1;
     height:100%;
-    border:solid;
+    border-radius: 15%;
+    border:1px solid #ccc;
   }
   div,a,img{
     padding:0;
@@ -193,6 +195,7 @@
     width:100%;
     height:6%;
     margin:0;
+    background-color:white;
   }
 
   /* 设置单个模块列表样式 */
@@ -212,8 +215,9 @@
     width:100%;
     height:6%;
     position:absolute;
-    top:35%;
+    top:36%;
     border-top:solid;
+    background-color:white;
   }
   .recommendmv_list{
     border:solid;
@@ -231,8 +235,9 @@
     width:100%;
     height:6%;
     position:absolute;
-    top:75%;
+    top:76%;
     border-top:solid;
+    background-color:white;
   }
   .topmv_list{
     border:solid;
